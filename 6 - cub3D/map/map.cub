@@ -1,0 +1,15 @@
+R 576 546
+NO ./xpm/bluestone.xpm
+SO ./xpm/redbrick.xpm
+WE ./xpm/colorstone.xpm
+EA ./xpm/greystone.xpm
+
+S ./xpm/pillar.xpm
+F 220,110,0
+C 225,30,0
+
+111111
+100101
+102001
+1100N1
+111111
