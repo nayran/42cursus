@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 14:07:59 by nayran            #+#    #+#             */
-/*   Updated: 2020/05/22 20:22:06 by nayran           ###   ########.fr       */
+/*   Updated: 2020/05/22 16:09:56 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_godfather	ft_convertemapa(t_godfather all)
 	while (y < all.caso.map_height)
 	{
 		x = 0;
-		all.caso.final_map[y] = (int *)ft_calloc(all.caso.map_width, sizeof(int));
+		all.caso.final_map[y] = (int *)malloc(all.caso.map_width * sizeof(int));
 		while (x < all.caso.map_width)
 		{
 			if (all.mapa[y].line[x] == 'N' || all.mapa[y].line[x] == 'S' ||
