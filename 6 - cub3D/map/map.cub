@@ -1,4 +1,4 @@
-R 576 546
+R 640 480
 NO ./xpm/bluestone.xpm
 SO ./xpm/redbrick.xpm
 WE ./xpm/colorstone.xpm
@@ -8,8 +8,8 @@ S ./xpm/pillar.xpm
 F 220,110,0
 C 225,30,0
 
-111111
-100101
-102001
-1100N1
-111111
+ 1111     11
+100101   1001
+1020011111001
+ 100N00000001
+  1111111111

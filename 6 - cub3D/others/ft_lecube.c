@@ -1,73 +1,71 @@
-#include "../cub3D.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lecube.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/20 13:55:58 by nayran            #+#    #+#             */
+/*   Updated: 2020/05/22 20:13:56 by nayran           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_strstr(char *str, char *str2)
+#include "../cub3d.h"
+
+t_godfather	ft_tratacasos(char *line, t_godfather all)
 {
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while(str[x])
-	{
-		y = 0;
-		while(str2[y] == str[x + y])
-		{
-			if (y  == ft_strlen(str2) - 1)
-				return (1);
-			y++;
-		}
-		x++;
-	}
-	return (0);
-}
-
-t_godfather ft_tratacasos(char *line, t_godfather all)
-{
-	if (ft_strstr(line, "R") > 0)
+	if ((ft_strstr(line, "R") > 0) && (all.caso.map == 0))
 		all = ft_trata_r(line, all);
-	if (ft_strstr(line, "NO") > 0)
-        all.caso.no = ft_tratageral(line, "NO");
-	if (ft_strstr(line, "SO") > 0)
-		all.caso.so = ft_tratageral(line, "SO");
-	if (ft_strstr(line, "WE") > 0)
-		all.caso.we = ft_tratageral(line, "WE");
-	if (ft_strstr(line, "EA") > 0)
-		all.caso.ea = ft_tratageral(line, "EA");
-	if (ft_strstr(line, "S") > 0 && all.caso.map == 0)
-		all.caso.s = ft_tratageral(line, "S");
-	if (ft_strstr(line, "F") > 0)
+	else if ((ft_strstr(line, "NO") > 0) && (all.caso.map == 0))
+		all = ft_tratageral(line, "NO", all);
+	else if ((ft_strstr(line, "SO") > 0) && (all.caso.map == 0))
+		all = ft_tratageral(line, "SO", all);
+	else if ((ft_strstr(line, "WE") > 0) && (all.caso.map == 0))
+		all = ft_tratageral(line, "WE", all);
+	else if ((ft_strstr(line, "EA") > 0) && (all.caso.map == 0))
+		all = ft_tratageral(line, "EA", all);
+	else if ((ft_strstr(line, "S") > 0) && (all.caso.map == 0))
+		all = ft_tratageral(line, "S", all);
+	else if ((ft_strstr(line, "F") > 0) && (all.caso.map == 0))
 		all = ft_tratafc(line, all, 'F');
-	if (ft_strstr(line, "C") > 0)
+	else if ((ft_strstr(line, "C") > 0) && (all.caso.map == 0))
 		all = ft_tratafc(line, all, 'C');
-	/*if (ft_strstr(line, "1") > 0)
-		all = ft_tratamapa(line, all);*/
+	else if (ft_strstr(line, "1") > 0)
+		all = ft_tratamapa(line, all);
 	return (all);
 }
 
-t_godfather inicializa_mapa(void)
+t_godfather	inicializa_mapa(void)
 {
-    t_godfather m;
+	t_godfather	m;
 
-	m.mapa.x = 0;
-	m.mapa.y = 0;
-	m.mapa.line = NULL;
-    m.caso.map = 0;
+	m.caso.map = 0;
+	m.caso.error = 0;
+	m.caso.final_map = NULL;
+	m.mapa = (t_mapa *)malloc(sizeof(t_mapa));
+	m.mapa->width = 0;
+	m.mapa->line = NULL;
 	return (m);
 }
 
 t_godfather	ft_lecube(char *path)
 {
-	int fd;
-	char *line;
-	ssize_t nread;
-	t_godfather all;
+	int			fd;
+	char		*line;
+	t_godfather	all;
+	int			x;
 
+	x = 0;
 	line = NULL;
-    all = inicializa_mapa();
+	all = inicializa_mapa();
 	if (!path)
 		return (all);
 	fd = open(path, O_RDONLY);
-	while (( get_next_line(fd, &line)) > 0)
+	while ((all.caso.nread = get_next_line(fd, &line)) > 0)
 		all = ft_tratacasos(line, all);
+	if (ft_mapeamento(all) == 1)
+		all.caso.error = 10;
+	else
+		all = ft_mapafinal(all);
 	return (all);
 }
