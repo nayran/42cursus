@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 14:07:59 by nayran            #+#    #+#             */
-/*   Updated: 2020/05/22 16:09:56 by nayran           ###   ########.fr       */
+/*   Updated: 2020/06/03 23:19:43 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,51 +38,28 @@ t_godfather	ft_copiamapa(char *line, t_godfather all)
 {
 	static int	cont;
 	int			x;
+	char		**aux;
 
+	aux = (char **)malloc(sizeof(char **) * (cont + 1));
+	aux[0] = NULL;
+	x = cont;
+	while (--x >= 0)
+		aux[x] = ft_strdup(all.mapaa[x]);
+	free(all.mapaa);
+	all.mapaa = (char **)malloc(sizeof(char **) * (cont + 1));
+	while (++x < cont)
+		all.mapaa[x] = ft_strdup(aux[x]);
+	all.mapaa[cont] = ft_strdup(line);
 	x = ft_strlen(line) - 1;
-	all.mapa[cont].line = ft_strdup(line);
 	while (line[x] == ' ')
-		x--;
-	all.mapa[cont].line[x + 1] = '\0';
-	all.mapa[cont].width = ft_strlen(all.mapa[cont].line);
-	if (ft_otherchr(all.mapa[cont].line) == 1)
-	{
-		all.caso.error = 10;
-		return (all);
-	}
-	cont++;
-	if (all.caso.nread == 0)
-		all.mapa = NULL;
-	all.caso.map_height = cont;
-	return (all);
-}
-
-int			ft_mapeamento(t_godfather all)
-{
-	int cont;
-	int y;
-	int width;
-
-	cont = 0;
-	while (cont < all.caso.map_height)
-	{
-		width = all.mapa[cont].width - 1;
-		if ((cont == 0 || (cont + 1) == all.caso.map_height)
-				&& ft_onlychr(all.mapa[cont].line, " 1"))
-			return (1);
-		y = -1;
-		if (all.mapa[cont].line[width] != 49)
-			return (1);
-		cont++;
-	}
-	return (ft_mapeamento2(all));
-}
-
-t_godfather	ft_tratamapa(char *line, t_godfather all)
-{
-	all.caso.map = 1;
-	if (all.caso.error != 10)
-		all = ft_copiamapa(line, all);
+		all.mapaa[cont][x--] = '\0';
+	x = (int)ft_strlen(all.mapaa[cont]) - 1;
+	if (all.map.map_width < x)
+		all.map.map_width = x + 1;
+	if (ft_otherchr(all.mapaa[cont++]) == 1)
+		all.error = 10;
+	all.map.map_height = cont;
+	free(aux);
 	return (all);
 }
 
@@ -92,22 +69,76 @@ t_godfather	ft_convertemapa(t_godfather all)
 	int y;
 
 	y = 0;
-	all.caso.final_map = (int **)ft_calloc(all.caso.map_height, sizeof(int));
-	all.caso.final_map[y] = (int *)ft_calloc(all.caso.map_width, sizeof(int));
-	while (y < all.caso.map_height)
+	all.map.map = (int **)ft_calloc(all.map.map_height, sizeof(int *));
+	while (y < all.map.map_height)
 	{
 		x = 0;
-		all.caso.final_map[y] = (int *)malloc(all.caso.map_width * sizeof(int));
-		while (x < all.caso.map_width)
+		all.map.map[y] = (int *)malloc(all.map.map_width * sizeof(int));
+		while (x < all.map.map_width)
 		{
-			if (all.mapa[y].line[x] == 'N' || all.mapa[y].line[x] == 'S' ||
-				all.mapa[y].line[x] == 'E' || all.mapa[y].line[x] == 'W')
-				all.caso.final_map[y][x] = all.mapa[y].line[x];
+			if (all.mapaa[y][x] == 'N' || all.mapaa[y][x] == 'S' ||
+				all.mapaa[y][x] == 'E' || all.mapaa[y][x] == 'W')
+			{
+				all.map.map[y][x] = 0;
+				all.player.x = x;
+				all.player.y = y;
+			}
 			else
-				all.caso.final_map[y][x] = all.mapa[y].line[x] - 48;
+				all.map.map[y][x] = all.mapaa[y][x] - 48;
 			x++;
 		}
 		y++;
 	}
+	return (all);
+}
+
+char		*ft_enquadro(char *str, int width)
+{
+	char	*aux;
+	int		x;
+
+	x = 0;
+	aux = (char *)malloc(width + 1);
+	while (str[x])
+	{
+		if (str[x] == ' ')
+			aux[x] = '1';
+		else
+			aux[x] = str[x];
+		x++;
+	}
+	width = width - ft_strlen(str);
+	while (width > 0)
+	{
+		aux[x] = '1';
+		width--;
+		x++;
+	}
+	aux[x] = '\0';
+	return (aux);
+}
+
+t_godfather	ft_mapafinal(t_godfather all)
+{
+	int cont;
+	int x;
+	int width;
+
+	width = 0;
+	cont = 0;
+	while (cont < all.map.map_height)
+	{
+		if (width < all.map.map_width)
+			width = all.map.map_width;
+		cont++;
+	}
+	cont = 0;
+	while (cont < all.map.map_height && (x = -1))
+	{
+		all.mapaa[cont] = ft_enquadro(all.mapaa[cont], width);
+		all.map.map_width = width;
+		cont++;
+	}
+	all = ft_convertemapa(all);
 	return (all);
 }

@@ -35,6 +35,8 @@ C = ft_atoi.c		\
 	ft_strmapi.c	\
 	ft_strtrim.c	\
 	ft_strstr.c		\
+	ft_strndup.c	\
+	ft_exactstr.c	\
 	ft_onlychr.c
 
 O = ft_atoi.o		\
@@ -72,6 +74,8 @@ O = ft_atoi.o		\
 	ft_strmapi.o	\
 	ft_strtrim.o	\
 	ft_strstr.o		\
+	ft_strndup.o	\
+	ft_exactstr.o	\
 	ft_onlychr.o
 
 H = libft.h

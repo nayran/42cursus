@@ -6,7 +6,7 @@
 /*   By: nasimon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 15:41:42 by nasimon-          #+#    #+#             */
-/*   Updated: 2020/05/21 23:20:10 by nayran           ###   ########.fr       */
+/*   Updated: 2020/05/27 00:25:41 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)
 
 int					ft_strstr(char *str, char *str2);
 int					ft_onlychr(char *str, char *c);
+int					ft_exactstr(char *str, char *str2);
+char				*ft_strndup (const char *source, int n);
 #	endif
