@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 19:48:57 by nayran            #+#    #+#             */
-/*   Updated: 2021/02/17 16:12:40 by nayran           ###   ########.fr       */
+/*   Updated: 2021/02/17 17:02:35 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_specialhandler(char *buff)
 
 	x = -1;
 	y = 0;
-	aux = malloc(sizeof(buff));
+	aux = malloc(ft_strlen(buff));
 	while (buff[++x])
 	{
 		if (buff[x] != '\'' && buff[x] != '\"')
@@ -74,7 +74,7 @@ char	**ft_spcheck2(char **newbuff, int c, int x, char *buff)
 
 	quote = ft_isquoted(buff);
 	newbuff[c] = ft_strdup(buff);
-	newbuff[c][x] = 0;
+	newbuff[c][x] = '\0';
 	newbuff[c] = ft_specialhandler(newbuff[c]);
 	newbuff[c] = ft_antispace(newbuff[c]);
 	if (quote == 2)
@@ -100,9 +100,11 @@ char	**ft_specharcheck(char *buff, int semicols)
 		if ((buff[x] == ';' && buff[x - 1] != '\\') ||
 				(buff[x] == '\0' || buff[x + 1] == '\0'))
 		{
+			if (buff[x + 1] == '\0')
+				x++;
 			newbuffer = ft_spcheck2(newbuffer, count, x, buff);
 			buff = &buff[x + 1];
-			x = 0;
+			x = -1;
 			count++;
 		}
 	}
