@@ -6,11 +6,24 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 16:14:33 by nayran            #+#    #+#             */
-/*   Updated: 2020/12/10 16:16:37 by nayran           ###   ########.fr       */
+/*   Updated: 2021/02/17 13:49:06 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		ft_isexec(char *path)
+{
+	int fd;
+	int aux;
+
+	aux = 1;
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		aux = -1;
+	close(fd);
+	return (aux);
+}
 
 void	ft_putvarlst(char *name, char **env)
 {

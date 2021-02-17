@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 14:55:40 by nayran            #+#    #+#             */
-/*   Updated: 2021/02/10 14:04:17 by nayran           ###   ########.fr       */
+/*   Updated: 2021/02/17 13:50:13 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		ft_handleargs(char *buff, int x)
 	if (redir)
 		buff = ft_removefilename(buff);
 	path = ft_handlepath(buff);
-	if (path && ft_isfile(path))
+	if (path && ft_isexec(path))
 		x = ft_exec(buff, path);
 	else if (ft_strnstr(buff, "env", 3))
 		x = ft_allenv();

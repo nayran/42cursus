@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:26:54 by nayran            #+#    #+#             */
-/*   Updated: 2021/02/09 15:46:47 by nayran           ###   ########.fr       */
+/*   Updated: 2021/02/17 13:48:48 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void					ft_putvarlst(char *name, char **env);
 int						ft_exportvar(char *name);
 char					*ft_getvarname(char *name);
 int						ft_export(char *buff);
+int						ft_isexec(char *path);
 
 /*
 **		HANDLER.C
