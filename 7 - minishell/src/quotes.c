@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 19:48:57 by nayran            #+#    #+#             */
-/*   Updated: 2021/02/10 14:33:45 by nayran           ###   ########.fr       */
+/*   Updated: 2021/02/17 16:12:40 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,18 @@ char	**ft_changedollarsign(char **buff, int n)
 	return (buff);
 }
 
-char	**ft_spcheck2(int c, int semicols, int x, char *buff)
+char	**ft_spcheck2(char **newbuff, int c, int x, char *buff)
 {
-	char	**newbuffer;
 	int		quote;
 
 	quote = ft_isquoted(buff);
-	newbuffer = malloc(semicols * sizeof(char *));
-	newbuffer[c] = ft_strdup(buff);
-	newbuffer[c][x] = 0;
-	newbuffer[c] = ft_specialhandler(newbuffer[c]);
+	newbuff[c] = ft_strdup(buff);
+	newbuff[c][x] = 0;
+	newbuff[c] = ft_specialhandler(newbuff[c]);
+	newbuff[c] = ft_antispace(newbuff[c]);
 	if (quote == 2)
-		newbuffer[c] = ft_istheredollsign(newbuffer[c]);
-	return (newbuffer);
+		newbuff[c] = ft_istheredollsign(newbuff[c]);
+	return (newbuff);
 }
 
 char	**ft_specharcheck(char *buff, int semicols)
@@ -91,6 +90,7 @@ char	**ft_specharcheck(char *buff, int semicols)
 
 	x = -1;
 	count = 0;
+	newbuffer = malloc(semicols * sizeof(char *));
 	while (buff[++x])
 	{
 		if (buff[x] == '\'' && buff[x - 1] != '\\')
@@ -100,7 +100,7 @@ char	**ft_specharcheck(char *buff, int semicols)
 		if ((buff[x] == ';' && buff[x - 1] != '\\') ||
 				(buff[x] == '\0' || buff[x + 1] == '\0'))
 		{
-			newbuffer = ft_spcheck2(count, semicols, x, buff);
+			newbuffer = ft_spcheck2(newbuffer, count, x, buff);
 			buff = &buff[x + 1];
 			x = 0;
 			count++;

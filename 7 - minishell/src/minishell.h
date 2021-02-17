@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:26:54 by nayran            #+#    #+#             */
-/*   Updated: 2021/02/17 13:48:48 by nayran           ###   ########.fr       */
+/*   Updated: 2021/02/17 16:12:00 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int						ft_allenv(void);
 int						ft_specounter(char *buff);
 char					*ft_specialhandler(char *buff);
 char					**ft_changedollarsign(char **buff, int n);
-char					**ft_spcheck2(int c, int semicols, int x, char *buff);
+char					**ft_spcheck2(char **newbuff, int c, int x, char *buff);
 char					**ft_specharcheck(char *buff, int semicols);
 
 /*

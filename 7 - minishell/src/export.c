@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 16:14:33 by nayran            #+#    #+#             */
-/*   Updated: 2021/02/17 13:49:06 by nayran           ###   ########.fr       */
+/*   Updated: 2021/02/17 15:25:22 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_isexec(char *path)
 	aux = 1;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		aux = -1;
+		aux = 0;
 	close(fd);
 	return (aux);
 }

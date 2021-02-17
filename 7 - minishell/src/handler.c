@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 15:34:51 by nayran            #+#    #+#             */
-/*   Updated: 2021/02/10 14:06:05 by nayran           ###   ########.fr       */
+/*   Updated: 2021/02/17 16:06:32 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ void	ft_handler3(int semicols, char **semicolbuff)
 			ft_pipes(pipesbuff, pipes, x);
 		}
 		else if (semicolbuff[x][0] != 0 && semicolbuff[x][0] != 10)
+		{
 			ft_args(semicolbuff[x]);
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: nayran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 14:55:40 by nayran            #+#    #+#             */
-/*   Updated: 2021/02/17 13:50:13 by nayran           ###   ########.fr       */
+/*   Updated: 2021/02/17 15:25:49 by nayran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		ft_handleargs(char *buff, int x)
 		x = ft_allenv();
 	else if (ft_strnstr(buff, "$", 1))
 		ft_callvars(buff, x);
-	else if (!ft_isfile(path) || !ft_isvar(buff))
+	else if (!ft_isexec(path) || !ft_isvar(buff))
 	{
 		if (ft_isallquote(buff))
 		{
