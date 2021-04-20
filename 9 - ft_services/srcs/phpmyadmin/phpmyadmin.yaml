@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin
+  labels:
+    app: phpmyadmin
+spec:
+  ports:
+    - name: phpmyadmin
+      port: 5000
+      targetPort: 5000
+      protocol: TCP
+  selector:
+    app: phpmyadmin
+    tier: mysql
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  labels:
+    app: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+      tier: mysql
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+        tier: mysql
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: phpmyadmin
+          ports:
+            - containerPort: 5000
+              name: phpmyadmin
+          imagePullPolicy: Never
+          volumeMounts:
+          - name: mysql-data
+            mountPath: /var/www/html
+      volumes:
+      - name: mysql-data
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
