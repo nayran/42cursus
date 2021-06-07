@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import subprocess as sp
+from sys import platform
+import os
+
+if __name__ == "__main__":
+
+    print("Resetting Virtualbox DHCP...")
+
+    procs = sp.run("ps aux", shell=True, stdout=sp.PIPE)\
+        .stdout.decode("utf8").lower().split('\n')
+
+    pids = [
+        p.split()[1] for p in procs if 'vboxsvc' in p or 'vboxnetdhcp' in p
+    ]
+
+    for pid in pids:
+        sp.run(['kill', '-9', pid])
+
+    cfg_dir = ".config" if platform != 'darwin' else 'Library'
+    file = f"~/{cfg_dir}/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.leases"
+
+    try:
+        os.remove(os.path.expanduser(file))
+    except OSError as e:
+        pass

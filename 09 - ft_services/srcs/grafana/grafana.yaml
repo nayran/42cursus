@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  ports:
+    - name: grafana
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: grafana
+    tier: influxdb
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+      tier: influxdb
+  template:
+    metadata:
+      labels:
+        app: grafana
+        tier: influxdb
+    spec:
+      containers:
+        - name: grafana
+          image: grafana
+          ports:
+              - containerPort: 3000
+                name: grafana
+          imagePullPolicy: Never

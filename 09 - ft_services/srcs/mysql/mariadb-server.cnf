@@ -1,0 +1,8 @@
+[galera]
+bind-address = 0.0.0.0
+[mysqld]
+# Skip reverse DNS lookup 
+skip-name-resolve
+bind-address = 0.0.0.0
+user = root
+port = 3306
