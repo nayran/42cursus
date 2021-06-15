@@ -13,7 +13,7 @@ int	ft_atoichecker(char *num, t_stack *stack)
 	free (aux);
 	if (t > INT_MAX)
 	{
-		free (stack);
+		ft_free (stack);
 		return (0);
 	}
 	return (1);

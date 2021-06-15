@@ -37,12 +37,10 @@ bonus: $(CHECKER)
 	
 $(PUSH_SWAP): $(OBJS) $(OBJP) 
 	@cd srcs/libft && make
-	@ar rc $(PUSH_SWAP) $(OBJS) $(OBJP)
 	@clang $(FLAGS) $(OBJS) $(OBJP) $(UTILS) -o push_swap
 
 $(CHECKER): $(OBJS) $(OBJC)
 	@cd srcs/libft && make
-	@ar rc $(CHECKER) $(OBJS) $(OBJC)
 	@clang $(FLAGS) $(OBJS) $(OBJC) $(UTILS)  -o checker
 
 %.o: %.c
