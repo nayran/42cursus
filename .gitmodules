@@ -19,3 +19,6 @@
 [submodule "07 - libasm"]
 	path = 07 - libasm
 	url = https://github.com/nayran/libasm.git
+[submodule "08 - minishell"]
+	path = 08 - minishell
+	url = https://github.com/nayran/minishell.git
