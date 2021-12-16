@@ -7,3 +7,6 @@
 [submodule "03 - get_next_line"]
 	path = 03 - get_next_line
 	url = https://github.com/nayran/get_next_line.git
+[submodule "04 - ft_printf"]
+	path = 04 - ft_printf
+	url = https://github.com/nayran/ft_printf.git
