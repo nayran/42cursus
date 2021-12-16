@@ -10,3 +10,6 @@
 [submodule "04 - ft_printf"]
 	path = 04 - ft_printf
 	url = https://github.com/nayran/ft_printf.git
+[submodule "05 - ft_server"]
+	path = 05 - ft_server
+	url = https://github.com/nayran/ft_server.git
