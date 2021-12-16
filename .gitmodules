@@ -4,3 +4,6 @@
 [submodule "02 - netwhat"]
 	path = 02 - netwhat
 	url = https://github.com/nayran/netwhat.git
+[submodule "03 - get_next_line"]
+	path = 03 - get_next_line
+	url = https://github.com/nayran/get_next_line.git
