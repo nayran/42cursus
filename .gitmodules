@@ -31,3 +31,6 @@
 [submodule "11 - philosophers"]
 	path = 11 - philosophers
 	url = https://github.com/nayran/philosophers.git
+[submodule "12 - CPP"]
+	path = 12 - CPP
+	url = https://github.com/nayran/CPP.git
