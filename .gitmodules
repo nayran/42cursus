@@ -25,3 +25,6 @@
 [submodule "09 - ft_services"]
 	path = 09 - ft_services
 	url = https://github.com/nayran/ft_services.git
+[submodule "10 - push_swap"]
+	path = 10 - push_swap
+	url = https://github.com/nayran/push_swap
