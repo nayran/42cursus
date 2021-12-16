@@ -13,3 +13,6 @@
 [submodule "05 - ft_server"]
 	path = 05 - ft_server
 	url = https://github.com/nayran/ft_server.git
+[submodule "06 - cub3D"]
+	path = 06 - cub3D
+	url = https://github.com/nayran/cub3D.git
