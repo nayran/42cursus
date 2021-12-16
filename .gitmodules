@@ -22,3 +22,6 @@
 [submodule "08 - minishell"]
 	path = 08 - minishell
 	url = https://github.com/nayran/minishell.git
+[submodule "09 - ft_services"]
+	path = 09 - ft_services
+	url = https://github.com/nayran/ft_services.git
