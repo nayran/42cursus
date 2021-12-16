@@ -16,3 +16,6 @@
 [submodule "06 - cub3D"]
 	path = 06 - cub3D
 	url = https://github.com/nayran/cub3D.git
+[submodule "07 - libasm"]
+	path = 07 - libasm
+	url = https://github.com/nayran/libasm.git
