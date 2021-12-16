@@ -1,3 +1,6 @@
 [submodule "01 - libft"]
 	path = 01 - libft
 	url = https://github.com/nayran/libft.git
+[submodule "02 - netwhat"]
+	path = 02 - netwhat
+	url = https://github.com/nayran/netwhat.git
