@@ -37,3 +37,6 @@
 [submodule "13 - ft_containers"]
 	path = 13 - ft_containers
 	url = https://github.com/nayran/ft_containers.git
+[submodule "14 - ft_irc"]
+	path = 14 - ft_irc
+	url = https://github.com/nayran/ft_irc.git
