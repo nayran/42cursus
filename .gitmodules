@@ -40,3 +40,6 @@
 [submodule "14 - ft_irc"]
 	path = 14 - ft_irc
 	url = https://github.com/nayran/ft_irc.git
+[submodule "15 - ft_transcendence"]
+	path = 15 - ft_transcendence
+	url = https://github.com/nayran/ft_transcendence.git
